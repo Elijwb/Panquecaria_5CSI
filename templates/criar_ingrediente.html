@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastrar ingrediente</title>
+        
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/e795d44abe.js" crossorigin="anonymous"></script>
+    </head>
+    <body style="background-color: #56baed">
+        <nav class="navbar navbar-default" style="background-color: white;">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" style="color:#56baed ;font-weight: bold;" href="/">Panquecaria</a>
+                <a class="active" style="color:#5f6f81;margin-right: 10px;" href="/ingrediente">Lista de Ingredientes</a>
+                <a class="active"  style="color:#5f6f81;font-weight: bold;" >Novo Ingrediente</a>
+        
+              </div>
+            </div>
+          </nav>
+        <!-- <form action="/ingrediente/novo" method="POST" >
+            <p>
+                <label for="nome">Nome do ingrediente:</label>
+                <input type="text" id="nome" name="nome" autocomplete="off" />
+            </p>
+            <p>
+                <label for="peso">Peso:</label>
+                <input type="text" id="peso" name="peso" autocomplete="off" />
+            </p>
+            <p>
+                <label for="valor">Valor:</label>
+                <input type="text" id="valor" name="valor" autocomplete="off" />
+            </p>
+            <p>
+                <button type="submit">Salvar</button>
+            </p>
+        </form> -->
+        <div class="container">
+         
+            <form action="/ingrediente/novo" method="POST"  style="margin-top: 100px;background-color: white;border: 1px solid black;padding: 30px;">
+              <div class="form-group">
+                
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" placeholder="Digite o nome do ingrediente" name="nome">
+              </div>
+              <div class="form-group">
+                <label for="peso">Peso:</label>
+                <input type="number" class="form-control" id="peso" placeholder="Digite o peso da porção do ingrediente" name="peso">
+              </div>
+              <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="number" class="form-control" id="valor" placeholder="Digite o do alimento em R$" name="valor">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+          </div>
+    </body>
+</html>

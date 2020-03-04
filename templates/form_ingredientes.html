@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ingredientes</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/e795d44abe.js" crossorigin="anonymous"></script>
+    </head>
+    <script type="text/javascript">
+        const id_ingrediente = "{{id}}";
+
+        function validar() {
+            const nome = document.getElementById('nome');
+            const peso = document.getElementById('peso');
+            const valor = document.getElementById('valor');
+            if (nome.value === '') {
+                alert("O nome do ingrediente não pode ser vazio.");
+                return false;
+            }
+            if (peso.value === '') {
+                alert("Informe o pesodo ingrediente");
+                return false;
+            }
+            if (valor.value == '') {
+                alert("Informe o valor do ingrediente");
+                return false;
+            }
+            return true;
+        }
+
+        function salvar() {
+            if (!validar()) return;
+            document.getElementById("form_principal").submit();
+        }
+
+        function excluir() {
+            if (!confirm("Você tem certeza?")) return;
+            xhr = new XMLHttpRequest();
+            xhr.open('DELETE', '/ingrediente/' + id_ingrediente);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.readyState !== 4) return;
+                if (xhr.status === 200 || xhr.status === 404) {
+                    document.open();
+                    document.write(xhr.responseText);
+                    document.close();
+                } else {
+                    alert('Erro ' + xhr.status);
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+
+<body style="background-color: #56baed">
+
+
+    
+    <!------ Include the above in your HEAD tag ---------->
+    
+    <!-- details card section starts from here -->
+    <nav class="navbar navbar-default" style="background-color: white;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" style="color:#56baed ;font-weight: bold;" href="/">Panquecaria</a>
+            <a class="active" style="color:#5f6f81;margin-right: 10px;"  href="/ingrediente">Lista de Ingredientes</a>
+            <a class="active"  style="color:#5f6f81;" href="/ingrediente/novo">Novo Ingrediente</a>
+    
+          </div>
+        </div>
+        </nav> 
+     <div class="container">
+        <form action="/ingrediente/{{id}}" method="POST" id="form_principal" style="margin-top: 100px;background-color: white;border: 1px solid black;padding: 30px;">
+            {% if id != 'novo'%}
+                <p>
+                    <label>Id:</label>
+                    {{id}}
+                </p>
+            {% endif %}
+            <p>
+                <label for="nome">Nome do ingrediente:</label>
+                <input type="text" id="nome" name="nome"  class="form-control" value="{{nome}}" />
+            </p>
+            <p>
+                <label for="nome">Peso do ingrediente:</label>
+                <input type="number" id="peso" name="peso"  class="form-control" value="{{peso}}" />
+            </p>
+            <p>
+                <label for="nome">Valor do ingrediente:</label>
+                <input type="number" id="valor" name="valor"  class="form-control" value="{{valor}}" />
+            </p>
+            <p>
+                <button type="button" class="btn btn-warning"  onclick="javascript:salvar();">Alterar</button>
+                {% if id_ingrediente != 'novo' %}<button type="button"  class="btn btn-danger" onclick="javascript:excluir();">Excluir</button>{% endif %}
+            </p>
+        </form>
+    </div>
+    {% if id_ingrediente != 'novo' %}<form action="/ingrediente/{{id_ingrediente}}" id="delt" method="DELETE" style="display: none"></form>{% endif %}
+</body>
+</html>

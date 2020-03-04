@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro</title>
+    </head>
+    <body>
+        {% if mensagem != '' %}
+            <h2>{{mensagem}}</h2>
+        {% endif %}
+        <p>Escolha a opção que você quer:</p>
+        <p><a href="/ingrediente">Listar ingredientes</a></p>
+        <p><a href="/ingrediente/novo">Incluir um ingrediente</a></p>
+    </body>
+</html>
